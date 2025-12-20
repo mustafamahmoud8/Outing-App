@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "526789794420",
+    "project_id": "outing-app-cf482",
+    "storage_bucket": "outing-app-cf482.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:526789794420:android:fcea5a0396519fef888f21",
+        "android_client_info": {
+          "package_name": "com.example.outing"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2QWQK5lcsTxzNjhPisKw2OZRQjHIt-GY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,110 @@
+  Widget _buildMenuPlanItem(
+    BuildContext context,
+    PlanItem planItem,
+    PlanProvider planProvider,
+  ) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Theme.of(context).cardColor,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.shadowLight,
+            blurRadius: 4,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: AppColors.secondary.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: const Icon(
+              Icons.restaurant_menu,
+              color: AppColors.secondary,
+              size: 24,
+            ),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  planItem.displayName,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  '${planItem.brandName} • ${planItem.branchName}',
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: AppColors.textSecondary,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Row(
+                  children: [
+                    Text(
+                      '${planItem.sizeDisplay} • Qty: ${planItem.quantity}',
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: AppColors.textSecondary,
+                      ),
+                    ),
+                    const Spacer(),
+                    Text(
+                      '${planItem.totalPrice.toStringAsFixed(0)} EGP',
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: AppColors.secondary,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 8),
+          IconButton(
+            icon: const Icon(Icons.delete, color: AppColors.error),
+            onPressed: () => planProvider.removeFromPlan(planItem.id),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showClearPlanDialog(BuildContext context, BudgetProvider budget, PlanProvider planProvider) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Clear Plan'),
+        content: const Text('Are you sure you want to clear all items from your plan?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              budget.clearPlan();
+              planProvider.clearPlan();
+              Navigator.pop(context);
+            },
+            child: const Text('Clear', style: TextStyle(color: AppColors.error)),
+          ),
+        ],
+      ),
+    );
+  }
