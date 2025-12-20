@@ -1,0 +1,1352 @@
+{
+	"info": {
+		"_postman_id": "outing-backend-api-collection",
+		"name": "Outing Backend API",
+		"description": "Complete API collection for Outing Backend with all endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:5000",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "your_jwt_token_here",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Send OTP",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"phone\": \"01012345678\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/send-otp",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "send-otp"]
+						}
+					}
+				},
+				{
+					"name": "Verify OTP",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"phone\": \"01012345678\",\n  \"otp\": \"1234\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/verify-otp",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "verify-otp"]
+						}
+					}
+				},
+				{
+					"name": "Google Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"token\": \"google_id_token_here\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/google",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "google"]
+						}
+					}
+				},
+				{
+					"name": "Facebook Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"accessToken\": \"facebook_access_token_here\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/facebook",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "facebook"]
+						}
+					}
+				},
+				{
+					"name": "Owner Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Ahmed Mohamed\",\n  \"email\": \"owner@example.com\",\n  \"password\": \"securePassword123\",\n  \"phone\": \"01012345678\",\n  \"placeName\": \"Sunset Cafe\",\n  \"placeType\": \"cafe\",\n  \"placeAddress\": \"123 Main St, Cairo\",\n  \"placePhone\": \"0225551234\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/owner/register",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "owner", "register"]
+						}
+					}
+				},
+				{
+					"name": "Owner Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"owner@example.com\",\n  \"password\": \"securePassword123\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/owner/login",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "owner", "login"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "User Profile",
+			"item": [
+				{
+					"name": "Get Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/users/profile",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "users", "profile"]
+						}
+					}
+				},
+				{
+					"name": "Update Profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Ahmed Ali\",\n  \"email\": \"ahmed@example.com\",\n  \"phone\": \"01098765432\",\n  \"avatar\": \"https://example.com/avatar.jpg\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/users/profile",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "users", "profile"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Owner Management",
+			"item": [
+				{
+					"name": "Get Owner Dashboard",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/owner/dashboard",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "owner", "dashboard"]
+						}
+					}
+				},
+				{
+					"name": "Test Owner Route",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/owner/anything",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "owner", "anything"]
+						}
+					}
+				},
+				{
+					"name": "Update Place Info",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"placeName\": \"Sunset Cafe & Restaurant\",\n  \"placeType\": \"restaurant\",\n  \"placeAddress\": \"456 New Street, Cairo\",\n  \"placePhone\": \"0225559876\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/owner/place",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "owner", "place"]
+						}
+					}
+				},
+				{
+					"name": "Add Menu Category",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Main Dishes\",\n  \"description\": \"Delicious main course items\",\n  \"displayOrder\": 1\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/owner/menu/category",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "owner", "menu", "category"]
+						}
+					}
+				},
+				{
+					"name": "Add Menu Item",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"categoryId\": \"64a5b8c9d2e4f1234567890a\",\n  \"name\": \"Grilled Chicken\",\n  \"description\": \"Tender grilled chicken with special sauce\",\n  \"price\": 85.50,\n  \"image\": \"https://example.com/chicken.jpg\",\n  \"available\": true\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/owner/menu/item",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "owner", "menu", "item"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Offers",
+			"item": [
+				{
+					"name": "Create Offer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Weekend Special\",\n  \"description\": \"Get 25% off on all meals this weekend\",\n  \"discountPercentage\": 25,\n  \"validFrom\": \"2025-01-20T00:00:00Z\",\n  \"validTo\": \"2025-01-22T23:59:59Z\",\n  \"image\": \"https://example.com/offer.jpg\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/offers/create",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "offers", "create"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Chats",
+			"item": [
+				{
+					"name": "Create Chat",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"recipientId\": \"64a5b8c9d2e4f1234567890b\",\n  \"type\": \"direct\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/chats",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "chats"]
+						}
+					}
+				},
+				{
+					"name": "Get User Chats",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/chats",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "chats"]
+						}
+					}
+				},
+				{
+					"name": "Get Technical Support Chat",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/chats/technical-support",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "chats", "technical-support"]
+						}
+					}
+				},
+				{
+					"name": "Get Chat By ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/chats/64a5b8c9d2e4f1234567890c",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "chats", "64a5b8c9d2e4f1234567890c"]
+						}
+					}
+				},
+				{
+					"name": "Connect to Chat",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/chats/64a5b8c9d2e4f1234567890c/connect",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "chats", "64a5b8c9d2e4f1234567890c", "connect"]
+						}
+					}
+				},
+				{
+					"name": "Get Chat Messages",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/chats/64a5b8c9d2e4f1234567890c/messages",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "chats", "64a5b8c9d2e4f1234567890c", "messages"]
+						}
+					}
+				},
+				{
+					"name": "Send Message",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"text\": \"Hello! How can I help you today?\",\n  \"type\": \"text\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/chats/64a5b8c9d2e4f1234567890c/messages",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "chats", "64a5b8c9d2e4f1234567890c", "messages"]
+						}
+					}
+				},
+				{
+					"name": "Mark Messages as Read",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/chats/64a5b8c9d2e4f1234567890c/read",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "chats", "64a5b8c9d2e4f1234567890c", "read"]
+						}
+					}
+				},
+				{
+					"name": "Delete Message",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/chats/messages/64a5b8c9d2e4f1234567890d",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "chats", "messages", "64a5b8c9d2e4f1234567890d"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "AI Plans",
+			"item": [
+				{
+					"name": "Create Plan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"destination\": \"Cairo\",\n  \"duration\": 3,\n  \"budget\": 5000,\n  \"interests\": [\"history\", \"food\", \"shopping\"],\n  \"travelers\": 2\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/plans",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "plans"]
+						}
+					}
+				},
+				{
+					"name": "Get User Plans",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/plans",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "plans"]
+						}
+					}
+				},
+				{
+					"name": "Get Plan Status",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/plans/64a5b8c9d2e4f1234567890e/status",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "plans", "64a5b8c9d2e4f1234567890e", "status"]
+						}
+					}
+				},
+				{
+					"name": "Get Plan By ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/plans/64a5b8c9d2e4f1234567890e",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "plans", "64a5b8c9d2e4f1234567890e"]
+						}
+					}
+				},
+				{
+					"name": "Toggle Save Plan",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/plans/64a5b8c9d2e4f1234567890e/save",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "plans", "64a5b8c9d2e4f1234567890e", "save"]
+						}
+					}
+				},
+				{
+					"name": "Regenerate Plan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"preferences\": \"Include more outdoor activities\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/plans/64a5b8c9d2e4f1234567890e/regenerate",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "plans", "64a5b8c9d2e4f1234567890e", "regenerate"]
+						}
+					}
+				},
+				{
+					"name": "Delete Plan",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/plans/64a5b8c9d2e4f1234567890e",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "plans", "64a5b8c9d2e4f1234567890e"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "AI Conversations",
+			"item": [
+				{
+					"name": "Create Conversation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Travel Planning Help\",\n  \"initialMessage\": \"I need help planning a trip to Alexandria\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/ai-conversations",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "ai-conversations"]
+						}
+					}
+				},
+				{
+					"name": "Get User Conversations",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/ai-conversations",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "ai-conversations"]
+						}
+					}
+				},
+				{
+					"name": "Get Conversation By ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/ai-conversations/64a5b8c9d2e4f1234567890f",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "ai-conversations", "64a5b8c9d2e4f1234567890f"]
+						}
+					}
+				},
+				{
+					"name": "Send Message to AI",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"message\": \"What are the best places to visit in Alexandria?\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/ai-conversations/64a5b8c9d2e4f1234567890f/message",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "ai-conversations", "64a5b8c9d2e4f1234567890f", "message"]
+						}
+					}
+				},
+				{
+					"name": "Pin Conversation",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/ai-conversations/64a5b8c9d2e4f1234567890f/pin",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "ai-conversations", "64a5b8c9d2e4f1234567890f", "pin"]
+						}
+					}
+				},
+				{
+					"name": "Archive Conversation",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/ai-conversations/64a5b8c9d2e4f1234567890f/archive",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "ai-conversations", "64a5b8c9d2e4f1234567890f", "archive"]
+						}
+					}
+				},
+				{
+					"name": "Update Conversation Title",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Alexandria Trip Planning\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/ai-conversations/64a5b8c9d2e4f1234567890f/title",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "ai-conversations", "64a5b8c9d2e4f1234567890f", "title"]
+						}
+					}
+				},
+				{
+					"name": "Clear Conversation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/ai-conversations/64a5b8c9d2e4f1234567890f/clear",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "ai-conversations", "64a5b8c9d2e4f1234567890f", "clear"]
+						}
+					}
+				},
+				{
+					"name": "Delete Conversation",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/ai-conversations/64a5b8c9d2e4f1234567890f",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "ai-conversations", "64a5b8c9d2e4f1234567890f"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Categories & Places",
+			"item": [
+				{
+					"name": "Get All Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/categories",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "categories"]
+						}
+					}
+				},
+				{
+					"name": "Initialize Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/categories/init",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "categories", "init"]
+						}
+					}
+				},
+				{
+					"name": "Get Category By Slug",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/categories/restaurants",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "categories", "restaurants"]
+						}
+					}
+				},
+				{
+					"name": "Get Places By Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/categories/restaurants/places",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "categories", "restaurants", "places"]
+						}
+					}
+				},
+				{
+					"name": "Search Places",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/categories/places/search?q=cafe&city=Cairo",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "categories", "places", "search"],
+							"query": [
+								{
+									"key": "q",
+									"value": "cafe"
+								},
+								{
+									"key": "city",
+									"value": "Cairo"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Place By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/categories/places/64a5b8c9d2e4f123456789a0",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "categories", "places", "64a5b8c9d2e4f123456789a0"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Budget Filter",
+			"item": [
+				{
+					"name": "Filter by Budget",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/budget/filter?budget=1000",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "budget", "filter"],
+							"query": [
+								{
+									"key": "budget",
+									"value": "1000",
+									"description": "User's budget amount (e.g., 500, 1000, 2000)"
+								}
+							]
+						},
+						"description": "Filter categories and places based on user's budget. Returns all categories with places where price <= budget"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Place with Price",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/budget/place/64a5b8c9d2e4f123456789a0",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "budget", "place", "64a5b8c9d2e4f123456789a0"]
+						},
+						"description": "Get detailed information about a specific place including its price"
+					},
+					"response": []
+				},
+				{
+					"name": "Select Place with Current Location",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"placeId\": \"64a5b8c9d2e4f123456789a0\",\n  \"currentLocation\": {\n    \"latitude\": 30.0444,\n    \"longitude\": 31.2357\n  }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/budget/select-place",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "budget", "select-place"]
+						},
+						"description": "Select a place and get distance/navigation info from your current location"
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by Budget with Location",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"budget\": 1000,\n  \"currentLocation\": {\n    \"latitude\": 30.0444,\n    \"longitude\": 31.2357\n  },\n  \"maxDistance\": 10000\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/budget/filter-with-location",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "budget", "filter-with-location"]
+						},
+						"description": "Filter places by budget with distance from current location. Places are sorted by distance (nearest first). Optional maxDistance in meters."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Free Places",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/budget/free-places?currentLatitude=30.0444&currentLongitude=31.2357",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "budget", "free-places"],
+							"query": [
+								{
+									"key": "currentLatitude",
+									"value": "30.0444",
+									"description": "User's current latitude (optional)"
+								},
+								{
+									"key": "currentLongitude",
+									"value": "31.2357",
+									"description": "User's current longitude (optional)"
+								},
+								{
+									"key": "categorySlug",
+									"value": "parks",
+									"description": "Filter by category slug (optional)",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get all free places (price = 0 or no price). Optionally include location for distance calculation."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Map Places",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/budget/map-places?centerLatitude=30.0444&centerLongitude=31.2357&radius=5000",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "budget", "map-places"],
+							"query": [
+								{
+									"key": "centerLatitude",
+									"value": "30.0444",
+									"description": "Center point latitude"
+								},
+								{
+									"key": "centerLongitude",
+									"value": "31.2357",
+									"description": "Center point longitude"
+								},
+								{
+									"key": "radius",
+									"value": "5000",
+									"description": "Search radius in meters"
+								},
+								{
+									"key": "categorySlug",
+									"value": "restaurants",
+									"description": "Filter by category",
+									"disabled": true
+								},
+								{
+									"key": "minPrice",
+									"value": "100",
+									"description": "Minimum price filter",
+									"disabled": true
+								},
+								{
+									"key": "maxPrice",
+									"value": "500",
+									"description": "Maximum price filter",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "50",
+									"description": "Max results",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get places with locations for map markers. Returns marker coordinates and bounds for map display."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Nearby Places",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"currentLocation\": {\n    \"latitude\": 30.0444,\n    \"longitude\": 31.2357\n  },\n  \"radius\": 5000,\n  \"categorySlug\": null,\n  \"maxPrice\": null,\n  \"limit\": 50\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/budget/nearby-places",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "budget", "nearby-places"]
+						},
+						"description": "Get nearby places from current location with walking/driving time estimates."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Engagements & TimeTable",
+			"item": [
+				{
+					"name": "Create Engagement",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Weekend Outing\",\n  \"date\": \"2025-01-25\",\n  \"totalBudget\": 2000,\n  \"notes\": \"Fun day with friends\",\n  \"timeTable\": [\n    {\n      \"place\": \"64a5b8c9d2e4f123456789a0\",\n      \"placeName\": \"Coffee Shop\",\n      \"startTime\": \"09:00\",\n      \"endTime\": \"11:00\",\n      \"duration\": 120,\n      \"estimatedCost\": 200,\n      \"notes\": \"Breakfast\"\n    },\n    {\n      \"place\": \"64a5b8c9d2e4f123456789a1\",\n      \"placeName\": \"Museum\",\n      \"startTime\": \"12:00\",\n      \"endTime\": \"15:00\",\n      \"duration\": 180,\n      \"estimatedCost\": 300\n    }\n  ],\n  \"captainService\": {\n    \"isRequested\": false\n  },\n  \"participants\": [\n    {\n      \"name\": \"Ahmed\",\n      \"phone\": \"01012345678\",\n      \"status\": \"accepted\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/engagements",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "engagements"]
+						},
+						"description": "Create a new engagement with time table, places schedule, and participants"
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Engagements",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/engagements?upcoming=true",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "engagements"],
+							"query": [
+								{
+									"key": "status",
+									"value": "planned",
+									"disabled": true
+								},
+								{
+									"key": "upcoming",
+									"value": "true"
+								}
+							]
+						},
+						"description": "Get all user's engagements, optionally filter by status or upcoming only"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Engagement by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/engagements/64a5b8c9d2e4f123456789b0",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "engagements", "64a5b8c9d2e4f123456789b0"]
+						},
+						"description": "Get detailed information about a specific engagement"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Engagement Status",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"status\": \"in-progress\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/engagements/64a5b8c9d2e4f123456789b0/status",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "engagements", "64a5b8c9d2e4f123456789b0", "status"]
+						},
+						"description": "Update engagement status (planned, in-progress, completed, cancelled)"
+					},
+					"response": []
+				},
+				{
+					"name": "Request Captain Service",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"pickupLocation\": {\n    \"address\": \"123 Main Street, Cairo\",\n    \"latitude\": 30.0444,\n    \"longitude\": 31.2357\n  },\n  \"pickupTime\": \"09:00\",\n  \"estimatedFare\": 150\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/engagements/64a5b8c9d2e4f123456789b0/request-captain",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "engagements", "64a5b8c9d2e4f123456789b0", "request-captain"]
+						},
+						"description": "Request a captain/driver to transport to the first place in the plan"
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Captain",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"captainId\": \"64a5b8c9d2e4f123456789c0\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/engagements/64a5b8c9d2e4f123456789b0/assign-captain",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "engagements", "64a5b8c9d2e4f123456789b0", "assign-captain"]
+						},
+						"description": "Assign a specific captain to an engagement (for admin/captain app)"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Live Location",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"isEnabled\": true,\n  \"latitude\": 30.0444,\n  \"longitude\": 31.2357,\n  \"sharedWith\": [\n    {\n      \"name\": \"Ahmed\",\n      \"phone\": \"01012345678\",\n      \"canEdit\": false\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/engagements/64a5b8c9d2e4f123456789b0/live-location",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "engagements", "64a5b8c9d2e4f123456789b0", "live-location"]
+						},
+						"description": "Enable live location sharing and update current location with friends"
+					},
+					"response": []
+				},
+				{
+					"name": "Check Proximity Notifications",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"currentLatitude\": 30.0444,\n  \"currentLongitude\": 31.2357\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/engagements/64a5b8c9d2e4f123456789b0/check-proximity",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "engagements", "64a5b8c9d2e4f123456789b0", "check-proximity"]
+						},
+						"description": "Check if user is close to any place in the plan and send notification"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bookings",
+			"item": [
+				{
+					"name": "Create Booking",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"placeId\": \"64a5b8c9d2e4f123456789a0\",\n  \"userId\": \"64a5b8c9d2e4f1234567890b\",\n  \"date\": \"2025-01-25\",\n  \"time\": \"19:00\",\n  \"numberOfGuests\": 4,\n  \"specialRequests\": \"Window seat preferred\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/bookings/create",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "bookings", "create"]
+						}
+					}
+				},
+				{
+					"name": "Update Booking Status",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"status\": \"confirmed\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/bookings/64a5b8c9d2e4f123456789a1/status",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "bookings", "64a5b8c9d2e4f123456789a1", "status"]
+						}
+					}
+				}
+			]
+		}
+	]
+}
